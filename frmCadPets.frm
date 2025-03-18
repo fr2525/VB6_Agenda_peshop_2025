@@ -1,4 +1,5 @@
 VERSION 5.00
+Object = "{6B7E6392-850A-101B-AFC0-4210102A8DA7}#1.3#0"; "comctl32.ocx"
 Object = "{0BA686C6-F7D3-101A-993E-0000C0EF6F5E}#1.0#0"; "Threed32.ocx"
 Begin VB.Form frmCadPets 
    Caption         =   "Cadastro de Pets"
@@ -10,6 +11,23 @@ Begin VB.Form frmCadPets
    ScaleHeight     =   5310
    ScaleWidth      =   11760
    StartUpPosition =   2  'CenterScreen
+   Begin ComctlLib.ListView lstPets 
+      Height          =   4635
+      Left            =   180
+      TabIndex        =   17
+      Top             =   360
+      Width           =   4995
+      _ExtentX        =   8811
+      _ExtentY        =   8176
+      LabelWrap       =   -1  'True
+      HideSelection   =   -1  'True
+      _Version        =   327682
+      ForeColor       =   -2147483640
+      BackColor       =   -2147483643
+      BorderStyle     =   1
+      Appearance      =   1
+      NumItems        =   0
+   End
    Begin VB.TextBox txtCuidEspec 
       Alignment       =   2  'Center
       Enabled         =   0   'False
@@ -23,7 +41,7 @@ Begin VB.Form frmCadPets
          Strikethrough   =   0   'False
       EndProperty
       Height          =   780
-      Left            =   7410
+      Left            =   6720
       MaxLength       =   2
       MultiLine       =   -1  'True
       TabIndex        =   15
@@ -43,7 +61,7 @@ Begin VB.Form frmCadPets
          Strikethrough   =   0   'False
       EndProperty
       Height          =   780
-      Left            =   7380
+      Left            =   6720
       MaxLength       =   2
       MultiLine       =   -1  'True
       TabIndex        =   13
@@ -63,7 +81,7 @@ Begin VB.Form frmCadPets
          Strikethrough   =   0   'False
       EndProperty
       Height          =   360
-      Left            =   7410
+      Left            =   6720
       MaxLength       =   2
       TabIndex        =   11
       Top             =   2520
@@ -71,7 +89,7 @@ Begin VB.Form frmCadPets
    End
    Begin VB.ComboBox cmbTipos 
       Height          =   315
-      Left            =   9450
+      Left            =   8745
       TabIndex        =   9
       Text            =   "Tipos"
       Top             =   2520
@@ -80,7 +98,7 @@ Begin VB.Form frmCadPets
    End
    Begin VB.ComboBox cmbDonos 
       Height          =   315
-      Left            =   7410
+      Left            =   6720
       TabIndex        =   6
       Text            =   "Donos"
       Top             =   1350
@@ -100,7 +118,7 @@ Begin VB.Form frmCadPets
          Strikethrough   =   0   'False
       EndProperty
       Height          =   360
-      Left            =   7410
+      Left            =   6720
       MaxLength       =   2
       TabIndex        =   4
       Top             =   1950
@@ -108,7 +126,7 @@ Begin VB.Form frmCadPets
    End
    Begin Threed.SSCommand cmd_Adicionar 
       Height          =   675
-      Left            =   240
+      Left            =   5940
       TabIndex        =   0
       Top             =   390
       Width           =   975
@@ -132,7 +150,7 @@ Begin VB.Form frmCadPets
    End
    Begin Threed.SSCommand cmd_Limpar 
       Height          =   675
-      Left            =   1245
+      Left            =   6945
       TabIndex        =   1
       Top             =   390
       Width           =   975
@@ -156,7 +174,7 @@ Begin VB.Form frmCadPets
    End
    Begin Threed.SSCommand cmd_Gravar 
       Height          =   675
-      Left            =   2235
+      Left            =   7935
       TabIndex        =   2
       Top             =   390
       Width           =   975
@@ -181,7 +199,7 @@ Begin VB.Form frmCadPets
    End
    Begin Threed.SSCommand cmd_Sair 
       Height          =   675
-      Left            =   4170
+      Left            =   9870
       TabIndex        =   3
       Top             =   390
       Width           =   975
@@ -205,7 +223,7 @@ Begin VB.Form frmCadPets
    End
    Begin Threed.SSCommand cmd_Excluir 
       Height          =   675
-      Left            =   3225
+      Left            =   8925
       TabIndex        =   16
       Top             =   390
       Width           =   945
@@ -241,7 +259,7 @@ Begin VB.Form frmCadPets
       EndProperty
       ForeColor       =   &H00800000&
       Height          =   480
-      Left            =   6165
+      Left            =   5505
       TabIndex        =   14
       Top             =   3090
       Width           =   1200
@@ -259,7 +277,7 @@ Begin VB.Form frmCadPets
       EndProperty
       ForeColor       =   &H00800000&
       Height          =   330
-      Left            =   6300
+      Left            =   5640
       TabIndex        =   12
       Top             =   4200
       Width           =   1035
@@ -277,7 +295,7 @@ Begin VB.Form frmCadPets
       EndProperty
       ForeColor       =   &H00800000&
       Height          =   360
-      Left            =   6195
+      Left            =   5535
       TabIndex        =   10
       Top             =   2550
       Width           =   1170
@@ -295,7 +313,7 @@ Begin VB.Form frmCadPets
       EndProperty
       ForeColor       =   &H00800000&
       Height          =   360
-      Left            =   8760
+      Left            =   8100
       TabIndex        =   8
       Top             =   2550
       Width           =   600
@@ -313,7 +331,7 @@ Begin VB.Form frmCadPets
       EndProperty
       ForeColor       =   &H00800000&
       Height          =   330
-      Left            =   5940
+      Left            =   5280
       TabIndex        =   7
       Top             =   1380
       Width           =   1425
@@ -331,7 +349,7 @@ Begin VB.Form frmCadPets
       EndProperty
       ForeColor       =   &H00800000&
       Height          =   360
-      Left            =   6765
+      Left            =   6105
       TabIndex        =   5
       Top             =   1920
       Width           =   600

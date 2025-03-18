@@ -25,7 +25,7 @@ Begin VB.Form frmAgenda
       CalendarTitleBackColor=   -2147483632
       CalendarTitleForeColor=   16776960
       CalendarTrailingForeColor=   128
-      Format          =   97058816
+      Format          =   124190720
       CurrentDate     =   42902
    End
    Begin VB.Frame Frame2 
@@ -590,37 +590,64 @@ row = sqlite_get_table(DBz, strSql, minfo) ' query database
 numrows = number_of_rows_from_last_call ' bilangan rows data yang di select
  
     
-    Set Rstemp = New ADODB.Recordset
-    Rstemp.Open strSql, CnnLocal, 1, 2
-    If Rstemp.RecordCount <> 0 Then
-        Rstemp.MoveLast
-        Rstemp.MoveFirst
+'    Set Rstemp = New ADODB.Recordset
+'    Rstemp.Open strSql, CnnLocal, 1, 2
+'    If Rstemp.RecordCount <> 0 Then
+'        Rstemp.MoveLast
+'        Rstemp.MoveFirst
         'fmeListaPedidos.Visible = True
-        
-        For X = 1 To Rstemp.RecordCount
-            If Not IsNull(Rstemp!DATA_PED) Then
-                List_atendimentos.ListItems.Add X, , Format(Rstemp!DATA_PED, "DD/MM/YYYY")
+    If numrows > 0 Then
+        For x = 1 To numrows
+            If Not IsNull(row(x, 0)) Then
+                List_atendimentos.ListItems.Add x, , Format(row(x, 0), "DD/MM/YYYY")
             Else
-                List_atendimentos.ListItems.Add X, , ""
+                List_atendimentos.ListItems.Add x, , ""
             End If
             If Not IsNull(Rstemp(0)) Then
-                List_atendimentos.ListItems(X).SubItems(1) = Rstemp(0)
+                List_atendimentos.ListItems(x).SubItems(1) = Rstemp(0)
             Else
-                List_atendimentos.ListItems(X).SubItems(1) = ""
+                List_atendimentos.ListItems(x).SubItems(1) = ""
             End If
             If Not IsNull(Rstemp!RAZAO_SOCIAL) Then
-                List_atendimentos.ListItems(X).SubItems(2) = UCase(Rstemp!RAZAO_SOCIAL)
+                List_atendimentos.ListItems(x).SubItems(2) = UCase(Rstemp!RAZAO_SOCIAL)
             Else
-                  List_atendimentos.ListItems.Add(X).SubItems(2) = "Fornecedor não Encontrado...!"
+                  List_atendimentos.ListItems.Add(x).SubItems(2) = "Fornecedor não Encontrado...!"
             End If
             If Not IsNull(Rstemp!VALOR_TOTAL) Then
-                List_atendimentos.ListItems(X).SubItems(3) = Format(Rstemp!VALOR_TOTAL, "0.00")
+                List_atendimentos.ListItems(x).SubItems(3) = Format(Rstemp!VALOR_TOTAL, "0.00")
             Else
-                List_atendimentos.ListItems.Add(X).SubItems(3) = ""
+                List_atendimentos.ListItems.Add(x).SubItems(3) = ""
             End If
             
             Rstemp.MoveNext
         Next
+        
+'        For X = 1 To Rstemp.RecordCount
+'            If Not IsNull(Rstemp!DATA_PED) Then
+'                List_atendimentos.ListItems.Add X, , Format(Rstemp!DATA_PED, "DD/MM/YYYY")
+'            Else
+'                List_atendimentos.ListItems.Add X, , ""
+'            End If
+'            If Not IsNull(Rstemp(0)) Then
+'                List_atendimentos.ListItems(X).SubItems(1) = Rstemp(0)
+'            Else
+'                List_atendimentos.ListItems(X).SubItems(1) = ""
+'            End If
+'            If Not IsNull(Rstemp!RAZAO_SOCIAL) Then
+'                List_atendimentos.ListItems(X).SubItems(2) = UCase(Rstemp!RAZAO_SOCIAL)
+'            Else
+'                  List_atendimentos.ListItems.Add(X).SubItems(2) = "Fornecedor não Encontrado...!"
+'            End If
+'            If Not IsNull(Rstemp!VALOR_TOTAL) Then
+'                List_atendimentos.ListItems(X).SubItems(3) = Format(Rstemp!VALOR_TOTAL, "0.00")
+'            Else
+'                List_atendimentos.ListItems.Add(X).SubItems(3) = ""
+'            End If
+'
+'            Rstemp.MoveNext
+'        Next
+        
+        
         List_atendimentos.SetFocus
        
     Else
